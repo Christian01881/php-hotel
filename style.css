@@ -1,0 +1,24 @@
+body{
+    background-color: #a08caf;
+}
+
+button{
+    padding: 4px 25px;
+    font-size: 20px;
+    border: none;
+    background-color: #1aa19e;
+}
+
+select{
+    border: none;
+    background-color: #1aa19e;
+}
+
+table{
+    background-color: #1aa19e;
+    font-size: 20px;
+}
+
+.align{
+    vertical-align: middle;
+}

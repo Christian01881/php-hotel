@@ -41,11 +41,11 @@
     ];
 
     if(!empty($_GET['filterPark']) && !empty($_GET['filterVote'])) {
-        $valuePark = $_GET['filterPark'];
+        $valuePark = ($_GET['filterPark'] == 'si') ? true : false;
         $valueVote = $_GET['filterVote'];
         $filteredHotels = [];
         foreach($hotels as $hotel){
-            if($hotel['parking'] === $valuePark && $hotel['vote'] == $valueVote){
+            if($hotel['parking'] == $valuePark && $hotel['vote'] == $valueVote){
                 $filteredHotels[] = $hotel;
             }
         }
@@ -65,19 +65,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
     <title>PHP Hotel</title>
 </head>
 <body>
-    <form action="<?php echo $_SERVER['PHP_SELF']?>">
-        <label for="filterPark">Cerchi un hotel:</label>
-        <select name="filterPark" id="filterPark">
+    <form action="<?php echo $_SERVER['PHP_SELF']?>" class="container d-flex flex-column align-items-center">
+        <label for="filterPark" class="mt-5 fs-2">Cerchi un hotel:</label>
+        <select name="filterPark" id="filterPark" class="mt-3">
             <option value="">...</option>
-            <option value="true">Con parcheggio</option>
-            <option value="false">Senza parcheggio</option>
+            <option value="si">Con parcheggio</option>
+            <option value="no">Senza parcheggio</option>
         </select>
 
-        <label for="filterVote">Filtra per voto:</label>
-        <select name="filterVote" id="filterVote">
+        <label for="filterVote" class="mt-5 fs-2">Filtra per voto:</label>
+        <select name="filterVote" id="filterVote" class="mt-3">
             <option value="">...</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -85,27 +86,27 @@
             <option value="4">4</option>
             <option value="5">5</option>
         </select>
-        <button type="submit">Invia</button>
+        <button type="submit" class="mt-5">Invia</button>
     </form>
 
-    <table class="table">
+    <table class="table mt-5 container border-dark">
         <tbody>
             <tr>
-            <th scope="row">Nome</th>
+            <th scope="row" class="border-dark border text-center align">Nome</th>
             <?php for($i = 0;$i < count($filteredHotels); $i++ ) { ?>
-                <td><?php echo $filteredHotels[$i]['name'] ?></td>
+                <td class="border-dark border text-center align"><?php echo $filteredHotels[$i]['name'] ?></td>
             <?php } ?>
             </tr>
             <tr>
-            <th scope="row">Descrizione</th>
+            <th scope="row" class="border-dark border text-center align">Descrizione</th>
             <?php for($i = 0;$i < count($filteredHotels); $i++ ) { ?>
-                <td><?php echo $filteredHotels[$i]['description'] ?></td>
+                <td class="border-dark border text-center align"><?php echo $filteredHotels[$i]['description'] ?></td>
             <?php } ?>
             </tr>
             <tr>
-            <th scope="row">Parcheggio</th>
+            <th scope="row" class="border-dark border text-center align">Parcheggio</th>
             <?php foreach ($filteredHotels as $hotel) { ?>
-                <td>
+                <td class="border-dark border text-center align">
                     <?php
                         if ($hotel['parking'] === true) {
                             echo 'Sì';
@@ -117,15 +118,15 @@
             <?php } ?>
             </tr>
             <tr>
-            <th scope="row">Voto</th>
+            <th scope="row" class="border-dark border text-center align">Voto</th>
             <?php for($i = 0;$i < count($filteredHotels); $i++ ) { ?>
-                <td><?php echo $filteredHotels[$i]['vote'] ?></td>
+                <td class="border-dark border text-center align"><?php echo $filteredHotels[$i]['vote'] ?></td>
             <?php } ?>
             </tr>
             <tr>
-            <th scope="row">Distanza dal centro (km)</th>
+            <th scope="row" class="border-dark border text-center align">Distanza dal centro (km)</th>
             <?php for($i = 0;$i < count($filteredHotels); $i++ ) { ?>
-                <td><?php echo $filteredHotels[$i]['distance_to_center'] ?></td>
+                <td class="border-dark border text-center align"><?php echo $filteredHotels[$i]['distance_to_center'] ?></td>
             <?php } ?>
             </tr>
         </tbody>
