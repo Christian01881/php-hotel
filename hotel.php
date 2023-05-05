@@ -45,7 +45,7 @@
         $valueVote = $_GET['filterVote'];
         $filteredHotels = [];
         foreach($hotels as $hotel){
-            if($hotel['parking'] == $valuePark && $hotel['vote'] == $valueVote){
+            if($hotel['parking'] == $valuePark && $hotel['vote'] >= $valueVote){
                 $filteredHotels[] = $hotel;
             }
         }
@@ -72,19 +72,19 @@
     <form action="<?php echo $_SERVER['PHP_SELF']?>" class="container d-flex flex-column align-items-center">
         <label for="filterPark" class="mt-5 fs-2">Cerchi un hotel:</label>
         <select name="filterPark" id="filterPark" class="mt-3">
-            <option value="">...</option>
-            <option value="si">Con parcheggio</option>
-            <option value="no">Senza parcheggio</option>
+            <option value="" class="text-center">All</option>
+            <option value="si" class="text-center">Con parcheggio</option>
+            <option value="no" class="text-center">Senza parcheggio</option>
         </select>
 
         <label for="filterVote" class="mt-5 fs-2">Filtra per voto:</label>
         <select name="filterVote" id="filterVote" class="mt-3">
-            <option value="">...</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+            <option value="" class="text-center">All</option>
+            <option value="1" class="text-center">1</option>
+            <option value="2" class="text-center">2</option>
+            <option value="3" class="text-center">3</option>
+            <option value="4" class="text-center">4</option>
+            <option value="5" class="text-center">5</option>
         </select>
         <button type="submit" class="mt-5">Invia</button>
     </form>
